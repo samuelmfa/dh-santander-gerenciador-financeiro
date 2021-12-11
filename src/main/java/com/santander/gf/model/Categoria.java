@@ -18,11 +18,10 @@ public class Categoria implements Serializable {
 
 	private String nome;
 
-	Categoria() {
+	public Categoria() {
 	}
 
-	public Categoria(Integer id, String nome) {
-		this.id = id;
+	public Categoria(String nome) {		
 		this.nome = nome;
 	}
 

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Receita implements Serializable {
@@ -16,8 +17,13 @@ public class Receita implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotEmpty(message = "Campo Requerido")
 	private String nome;
+	
 	private BigDecimal valor;
+	
+	@NotEmpty(message = "Campo Requerido")
 	private Categoria categoria;
 
 	public Receita() {
