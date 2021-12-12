@@ -1,18 +1,24 @@
 package com.santander.gf.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
-import com.santander.gf.model.Categoria;
+import javax.validation.constraints.NotEmpty;
 
 public class ReceitaDto {
-	
-	private String nome;
-	private BigDecimal valor;
-	private Categoria categoria;
-		
-	public ReceitaDto() {}
 
-	public ReceitaDto(String nome, BigDecimal valor, Categoria categoria) {		
+	@NotEmpty(message = "Campo Requerido")
+	private String nome;
+
+	private BigDecimal valor;
+	private LocalDate dataLancamento;
+		
+	private CategoriaDto categoria;
+
+	public ReceitaDto() {
+	}
+
+	public ReceitaDto(String nome, BigDecimal valor, CategoriaDto categoria) {
 		this.nome = nome;
 		this.valor = valor;
 		this.categoria = categoria;
@@ -34,18 +40,20 @@ public class ReceitaDto {
 		this.valor = valor;
 	}
 
-	public Categoria getCategoria() {
+	public CategoriaDto getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(CategoriaDto categoria) {
 		this.categoria = categoria;
 	}
-	
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "ReceitaDto [nome=" + nome + ", valor=" + valor + ", dataLancamento=" + dataLancamento + ", categoria="
+				+ categoria.getNome() + "]";
+	}
+
 	
 
 }

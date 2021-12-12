@@ -1,20 +1,29 @@
 package com.santander.gf.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
-import com.santander.gf.model.Categoria;
+import javax.validation.constraints.NotEmpty;
 
 public class DespesaDto {
 
+	@NotEmpty(message = "Campo Requerido")
 	private String nome;
-	private BigDecimal valor;
-	private Categoria categoria;
 	
-	public DespesaDto() {}
+	private BigDecimal valor;
+	
+	private LocalDate dataLancamento;
+	
+	
+	private CategoriaDto categoria;
 
-	public DespesaDto(String nome, BigDecimal valor, Categoria categoria) {		
+	public DespesaDto() {
+	}
+
+	public DespesaDto(String nome, BigDecimal valor, LocalDate dataLancamento, CategoriaDto categoria) {		
 		this.nome = nome;
 		this.valor = valor;
+		this.dataLancamento = dataLancamento;
 		this.categoria = categoria;
 	}
 
@@ -34,13 +43,26 @@ public class DespesaDto {
 		this.valor = valor;
 	}
 
-	public Categoria getCategoria() {
+	public LocalDate getDataLancamento() {
+		return dataLancamento;
+	}
+
+	public void setDataLancamento(LocalDate dataLancamento) {
+		this.dataLancamento = dataLancamento;
+	}
+
+	public CategoriaDto getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Categoria categoria) {
+	public void setCategoria(CategoriaDto categoria) {
 		this.categoria = categoria;
-	}	
-	
+	}
+
+	@Override
+	public String toString() {
+		return "DespesaDto [nome=" + nome + ", valor=" + valor + ", dataLancamento=" + dataLancamento + ", categoria="
+				+ categoria.getNome() + "]";
+	}
 
 }

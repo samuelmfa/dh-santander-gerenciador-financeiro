@@ -4,6 +4,7 @@ import javax.validation.constraints.NotEmpty;
 
 public class CategoriaDto {
 
+	@NotEmpty(message = "Campo Requerido")
 	private String nome;
 
 	public CategoriaDto() {
@@ -13,7 +14,6 @@ public class CategoriaDto {
 		this.nome = nome;
 	}
 
-	@NotEmpty(message = "Campo Requerido")
 	public String getNome() {
 		return nome;
 	}

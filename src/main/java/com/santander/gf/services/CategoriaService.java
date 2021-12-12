@@ -32,6 +32,12 @@ public class CategoriaService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName(), null));
 
 	}
+	
+	public Categoria findByNome(String nome) {
+		Optional<Categoria> categoria = repository.findByNome(nome);
+		return categoria.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Nome: " + nome + ", Tipo: " + Categoria.class.getName(), null));
+	}
 
 	public Categoria save(CategoriaDto categoriaDto) {
 		return repository.save(new Categoria(categoriaDto.getNome()));
