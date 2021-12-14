@@ -39,7 +39,7 @@ public class CategoriaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Categoria> save(@Valid @RequestBody CategoriaDto categoriaDto) {
+	public ResponseEntity<Categoria> save(@Valid @RequestBody CategoriaDto categoriaDto) {		
 		Categoria categoria = service.save(categoriaDto);
 		return ResponseEntity.ok(categoria);
 

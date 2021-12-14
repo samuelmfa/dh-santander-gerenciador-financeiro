@@ -43,4 +43,13 @@ public class ServiceExceptionHandler {
 
 	}
 
+	@ExceptionHandler(LimiteDespesaError.class)
+	public ResponseEntity<StandardError> dataIntegrity(LimiteDespesaError e, HttpServletRequest request) {
+
+		StandardError err = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
+				"Limite de gastos", e.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+
+	}
+
 }

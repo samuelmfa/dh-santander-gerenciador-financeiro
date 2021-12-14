@@ -32,7 +32,7 @@ public class CategoriaService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName(), null));
 
 	}
-	
+
 	public Categoria findByNome(String nome) {
 		Optional<Categoria> categoria = repository.findByNome(nome);
 		return categoria.orElseThrow(() -> new ObjectNotFoundException(
@@ -40,7 +40,7 @@ public class CategoriaService {
 	}
 
 	public Categoria save(CategoriaDto categoriaDto) {
-		return repository.save(new Categoria(categoriaDto.getNome()));
+		return repository.save(convertCategoriaDto(categoriaDto));
 	}
 
 	public Categoria update(Categoria categoria) {
@@ -61,12 +61,17 @@ public class CategoriaService {
 
 	}
 
-	private void updateData(Categoria newObj, Categoria obj) {
+	public Categoria updateData(Categoria newObj, Categoria obj) {
 		newObj.setNome(obj.getNome());
+		newObj.setLimite(obj.getLimite());
+		newObj.setLimiteMaximo(obj.getLimiteMaximo());
+		return newObj;
 	}
 
 	public Categoria convertCategoriaDto(CategoriaDto categoriaDto) {
 		this.categoria.setNome(categoriaDto.getNome());
+		this.categoria.setLimite(categoriaDto.getLimite());
+		this.categoria.setLimiteMaximo(categoriaDto.getLimiteMaximo());
 		return categoria;
 	}
 

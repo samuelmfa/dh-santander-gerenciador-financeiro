@@ -1,7 +1,9 @@
 package com.santander.gf.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,13 +18,22 @@ public class Categoria implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column(unique = true)
 	private String nome;
+	private Boolean limite = false;
+	private BigDecimal limiteMaximo;
 
 	public Categoria() {
 	}
 
-	public Categoria(String nome) {		
+	public Categoria(String nome) {
 		this.nome = nome;
+	}
+
+	public Categoria(String nome, Boolean limite, BigDecimal limiteMaximo) {
+		this.nome = nome;
+		this.limite = limite;
+		this.limiteMaximo = limiteMaximo;
 	}
 
 	public Integer getId() {
@@ -35,6 +46,22 @@ public class Categoria implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Boolean getLimite() {
+		return limite;
+	}
+
+	public void setLimite(Boolean limite) {
+		this.limite = limite;
+	}
+
+	public BigDecimal getLimiteMaximo() {
+		return limiteMaximo;
+	}
+
+	public void setLimiteMaximo(BigDecimal limiteMaximo) {
+		this.limiteMaximo = limiteMaximo;
 	}
 
 	@Override

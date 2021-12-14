@@ -12,16 +12,18 @@ public class ReceitaDto {
 
 	private BigDecimal valor;
 	private LocalDate dataLancamento;
-		
-	private CategoriaDto categoria;
+
+	@NotEmpty(message = "Campo Requerido")
+	private String categoriaId;
 
 	public ReceitaDto() {
 	}
 
-	public ReceitaDto(String nome, BigDecimal valor, CategoriaDto categoria) {
+	public ReceitaDto(String nome, BigDecimal valor, LocalDate dataLancamento, String categoriaId) {
 		this.nome = nome;
 		this.valor = valor;
-		this.categoria = categoria;
+		this.dataLancamento = dataLancamento;
+		this.categoriaId = categoriaId;
 	}
 
 	public String getNome() {
@@ -40,20 +42,26 @@ public class ReceitaDto {
 		this.valor = valor;
 	}
 
-	public CategoriaDto getCategoria() {
-		return categoria;
+	public LocalDate getDataLancamento() {
+		return dataLancamento;
 	}
 
-	public void setCategoria(CategoriaDto categoria) {
-		this.categoria = categoria;
+	public void setDataLancamento(LocalDate dataLancamento) {
+		this.dataLancamento = dataLancamento;
+	}
+
+	public String getCategoriaId() {
+		return categoriaId;
+	}
+
+	public void setCategoriaId(String categoriaId) {
+		this.categoriaId = categoriaId;
 	}
 
 	@Override
 	public String toString() {
-		return "ReceitaDto [nome=" + nome + ", valor=" + valor + ", dataLancamento=" + dataLancamento + ", categoria="
-				+ categoria.getNome() + "]";
+		return "ReceitaDto [nome=" + nome + ", valor=" + valor + ", dataLancamento=" + dataLancamento + ", categoriaId="
+				+ categoriaId + "]";
 	}
-
-	
 
 }

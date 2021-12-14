@@ -9,22 +9,22 @@ public class DespesaDto {
 
 	@NotEmpty(message = "Campo Requerido")
 	private String nome;
-	
+
 	private BigDecimal valor;
-	
+
 	private LocalDate dataLancamento;
-	
-	
-	private CategoriaDto categoria;
+
+	@NotEmpty(message = "Campo Requerido")
+	private String categoriaId;
 
 	public DespesaDto() {
 	}
 
-	public DespesaDto(String nome, BigDecimal valor, LocalDate dataLancamento, CategoriaDto categoria) {		
+	public DespesaDto(String nome, BigDecimal valor, LocalDate dataLancamento, String categoriaId) {
 		this.nome = nome;
 		this.valor = valor;
 		this.dataLancamento = dataLancamento;
-		this.categoria = categoria;
+		this.categoriaId = categoriaId;
 	}
 
 	public String getNome() {
@@ -51,18 +51,18 @@ public class DespesaDto {
 		this.dataLancamento = dataLancamento;
 	}
 
-	public CategoriaDto getCategoria() {
-		return categoria;
+	public String getCategoriaId() {
+		return categoriaId;
 	}
 
-	public void setCategoria(CategoriaDto categoria) {
-		this.categoria = categoria;
+	public void setCategoriaId(String categoriaId) {
+		this.categoriaId = categoriaId;
 	}
 
 	@Override
 	public String toString() {
-		return "DespesaDto [nome=" + nome + ", valor=" + valor + ", dataLancamento=" + dataLancamento + ", categoria="
-				+ categoria.getNome() + "]";
+		return "DespesaDto [nome=" + nome + ", valor=" + valor + ", dataLancamento=" + dataLancamento + ", categoriaId="
+				+ categoriaId + "]";
 	}
 
 }

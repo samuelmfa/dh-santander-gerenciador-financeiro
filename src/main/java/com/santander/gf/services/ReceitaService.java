@@ -38,18 +38,9 @@ public class ReceitaService {
 	}
 
 	public Receita save(ReceitaDto receitaDto) {
-
-		try {
-			this.categoria = categoriaService.findByNome(receitaDto.getCategoria().getNome());
-			Receita receita = new Receita(receitaDto.getNome(), receitaDto.getValor(), this.categoria);
-			return repository.save(receita);
-			
-		} catch (Exception e) {
-			this.categoria = categoriaService.save(receitaDto.getCategoria());
-			Receita receita = new Receita(receitaDto.getNome(), receitaDto.getValor(), this.categoria);
-			return repository.save(receita);
-			
-		}
+		categoria = categoriaService.findOne(Integer.parseInt(receitaDto.getCategoriaId()));
+		Receita receita = new Receita(receitaDto.getNome(), receitaDto.getValor(), categoria);
+		return repository.save(receita);
 
 	}
 

@@ -1,5 +1,6 @@
 package com.santander.gf.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -38,10 +39,21 @@ public class DespesasController {
 		return ResponseEntity.ok(despesa);
 	}
 
+	@GetMapping("/somavalores/{categoria}")
+	public ResponseEntity<?> findOne(@PathVariable("categoria") String categoria) {
+		if(categoria != null) {
+			BigDecimal despesa = service.verificaValores(categoria);
+		return ResponseEntity.ok(despesa);
+		}
+		return ResponseEntity.badRequest().build();
+		
+	}
+
 	@PostMapping
 	public ResponseEntity<Despesa> save(@Valid @RequestBody DespesaDto despesaDto) {
 		Despesa despesa = service.save(despesaDto);
 		return ResponseEntity.ok(despesa);
+		
 
 	}
 

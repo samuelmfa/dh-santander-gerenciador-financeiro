@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public abstract class Lancamento implements Serializable {
@@ -25,7 +28,9 @@ public abstract class Lancamento implements Serializable {
 	private LocalDate dataLancamento = LocalDate.now();
 	private LocalDate dataPagamento;
 
-	// @NotNull(message = "Campo Requerido")
+	@NotNull(message = "Campo Requerido")
+	@ManyToOne
+	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 
 	public Lancamento() {
